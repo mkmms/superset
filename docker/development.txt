@@ -64,7 +64,7 @@ pexpect==4.8.0
     # via ipython
 pickleshare==0.7.5
     # via ipython
-pillow==9.1.0
+pillow==9.1.1
     # via apache-superset
 progress==1.6
     # via -r requirements/development.in
@@ -120,7 +120,6 @@ unicodecsv==0.14.1
     #   tabulator
 xlrd==2.0.1
     # via tabulator
-Authlib==1.0.1
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
