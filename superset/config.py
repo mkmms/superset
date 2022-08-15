@@ -47,7 +47,7 @@ from cachelib.base import BaseCache
 from celery.schedules import crontab
 from dateutil import tz
 from flask import Blueprint
-from flask_appbuilder.security.manager import AUTH_DB
+from flask_appbuilder.security.manager import AUTH_DB, AUTH_OAUTH
 from pandas._libs.parsers import STR_NA_VALUES  # pylint: disable=no-name-in-module
 
 from superset.advanced_data_type.plugins.internet_address import internet_address
@@ -61,6 +61,7 @@ from superset.utils.core import is_test, parse_boolean_string
 from superset.utils.encrypt import SQLAlchemyUtilsAdapter
 from superset.utils.log import DBEventLogger
 from superset.utils.logging_configurator import DefaultLoggingConfigurator
+from superset.custom_security_manager import CustomSecurityManager
 
 logger = logging.getLogger(__name__)
 
@@ -273,7 +274,7 @@ FAB_API_SWAGGER_UI = True
 DRUID_TZ = tz.tzutc()
 DRUID_ANALYSIS_TYPES = ["cardinality"]
 
-
+CUSTOM_SECURITY_MANAGER = CustomSecurityManager
 # ----------------------------------------------------
 # AUTHENTICATION CONFIG
 # ----------------------------------------------------
@@ -282,7 +283,7 @@ DRUID_ANALYSIS_TYPES = ["cardinality"]
 # AUTH_DB : Is for database (username/password)
 # AUTH_LDAP : Is for LDAP
 # AUTH_REMOTE_USER : Is for using REMOTE_USER from web server
-AUTH_TYPE = AUTH_DB
+AUTH_TYPE = AUTH_OAUTH
 
 # Uncomment to setup Full admin role name
 # AUTH_ROLE_ADMIN = 'Admin'
@@ -291,13 +292,50 @@ AUTH_TYPE = AUTH_DB
 # AUTH_ROLE_PUBLIC = 'Public'
 
 # Will allow user self registration
-# AUTH_USER_REGISTRATION = True
+AUTH_USER_REGISTRATION = True
 
 # The default user self registration role
-# AUTH_USER_REGISTRATION_ROLE = "Public"
+# AUTH_USER_REGISTRATION_ROLE = "Admin"
+AUTH_USER_REGISTRATION_ROLE_JMESPATH = "(ends_with(username, '.admin') && 'Admin') || (ends_with(username, '.owner') && 'Admin') || 'Public'"
 
 # When using LDAP Auth, setup the LDAP server
 # AUTH_LDAP_SERVER = "ldap://ldapserver.new"
+
+#OAUTH_PROVIDERS
+OAUTH_PROVIDERS = [
+    # {
+    #     "name": "tsreports",
+    #     "icon": "",
+    #     "token_key": "access_token",
+    #     "remote_app": {
+    #         "client_id": "FgHR6U2omDm_P7dv-SOuL4ejZdhOaashWh1CYc5nhQY",
+    #         "client_secret": "sCZkY1oeqr2D7CYsVHE7IOiX-oF1J70L9aRuOkEM0yk",
+    #         "api_base_url": "http://69d3-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth",
+    #         "client_kwargs": {
+    #             "scope": "read"               # Scope for the Authorization
+    #         },
+    #         "request_token_url": None,
+    #         "access_token_url": "http://69d3-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/token",
+    #         "authorize_url": "http://69d3-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/authorize",
+    #     },
+    # },
+    {
+        "name": "ticketsimply",
+        "icon": "",
+        "token_key": "access_token",
+        "remote_app": {
+            "client_id": "tQias-bFapaK7M6veg_QYPghfk7dxxMgSc300bPPFwI",
+            "client_secret": "9QwwPp8tE8P32QyWIrYnSL27WnN4irauDmKeHZ1jGvM",
+            "api_base_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth",
+            "client_kwargs": {
+                "scope": "read"               # Scope for the Authorization
+            },
+            "request_token_url": None,
+            "access_token_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/token",
+            "authorize_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/authorize",
+        },
+    }
+]
 
 # Uncomment to setup OpenID providers example for OpenID authentication
 # OPENID_PROVIDERS = [
