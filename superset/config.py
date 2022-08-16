@@ -61,7 +61,10 @@ from superset.utils.core import is_test, parse_boolean_string
 from superset.utils.encrypt import SQLAlchemyUtilsAdapter
 from superset.utils.log import DBEventLogger
 from superset.utils.logging_configurator import DefaultLoggingConfigurator
-from superset.custom_security_manager import CustomSecurityManager
+from superset.custom_security_manager import (
+    CustomSecurityManager, 
+    CustomUser
+)
 
 logger = logging.getLogger(__name__)
 
@@ -275,6 +278,7 @@ DRUID_TZ = tz.tzutc()
 DRUID_ANALYSIS_TYPES = ["cardinality"]
 
 CUSTOM_SECURITY_MANAGER = CustomSecurityManager
+CUSTOM_USER = CustomUser
 # ----------------------------------------------------
 # AUTHENTICATION CONFIG
 # ----------------------------------------------------
@@ -324,17 +328,33 @@ OAUTH_PROVIDERS = [
         "icon": "",
         "token_key": "access_token",
         "remote_app": {
-            "client_id": "tQias-bFapaK7M6veg_QYPghfk7dxxMgSc300bPPFwI",
-            "client_secret": "9QwwPp8tE8P32QyWIrYnSL27WnN4irauDmKeHZ1jGvM",
-            "api_base_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth",
+            "client_id": "YcBUXsSI8bRkmjrjEFN0Ucdyqy51kR7jY0IYR4AZM9M",
+            "client_secret": "UII4g0gds0vkEnK1gq6GdvYXS3Pp9f0bkDxwf-mBxc8",
+            "api_base_url": "http://orange.ticketsimply1.com:3001/oauth",
             "client_kwargs": {
                 "scope": "read"               # Scope for the Authorization
             },
             "request_token_url": None,
-            "access_token_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/token",
-            "authorize_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/authorize",
+            "access_token_url": "http://orange.ticketsimply1.com:3001/oauth/token",
+            "authorize_url": "http://orange.ticketsimply1.com:3001/oauth/authorize",
         },
-    }
+    },
+    # {
+    #     "name": "gotour.ticketsimply",
+    #     "icon": "",
+    #     "token_key": "access_token",
+    #     "remote_app": {
+    #         "client_id": "tQias-bFapaK7M6veg_QYPghfk7dxxMgSc300bPPFwI",
+    #         "client_secret": "9QwwPp8tE8P32QyWIrYnSL27WnN4irauDmKeHZ1jGvM",
+    #         "api_base_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth",
+    #         "client_kwargs": {
+    #             "scope": "read"               # Scope for the Authorization
+    #         },
+    #         "request_token_url": None,
+    #         "access_token_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/token",
+    #         "authorize_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/authorize",
+    #     },
+    # }
 ]
 
 # Uncomment to setup OpenID providers example for OpenID authentication
