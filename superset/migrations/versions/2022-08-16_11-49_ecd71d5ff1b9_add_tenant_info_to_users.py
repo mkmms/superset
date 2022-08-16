@@ -31,14 +31,15 @@ import sqlalchemy as sa
 
 
 def upgrade():
-    op.add_column("ab_user", sa.Column("travel_id", sa.BigInteger(), nullable=False))
-    op.add_column("ab_user", sa.Column("travel_name", sa.String(255), nullable=False))
-    op.add_column("ab_user", sa.Column("user_type", sa.String(64), nullable=False))
-    op.add_column("ab_user", sa.Column("user_role", sa.String(64), nullable=False))
-
+    # op.add_column("ab_user", sa.Column("travel_id", sa.BigInteger(), nullable=False))
+    # op.add_column("ab_user", sa.Column("travel_name", sa.String(255), nullable=False))
+    # op.add_column("ab_user", sa.Column("user_type", sa.String(64), nullable=False))
+    # op.add_column("ab_user", sa.Column("user_role", sa.String(64), nullable=False))
+    pass
 
 def downgrade():
-    op.drop_column("ab_user", "travel_id")
-    op.drop_column("ab_user", "travel_name")
-    op.drop_column("ab_user", "user_type")
-    op.drop_column("ab_user", "user_role")
+#     op.drop_column("ab_user", "travel_id")
+#     op.drop_column("ab_user", "travel_name")
+#     op.drop_column("ab_user", "user_type")
+#     op.drop_column("ab_user", "user_role")
+    pass

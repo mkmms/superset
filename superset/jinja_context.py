@@ -16,6 +16,7 @@
 # under the License.
 """Defines the templating context for SQL Lab"""
 import json
+import logging
 import re
 from functools import partial
 from typing import (
@@ -47,6 +48,7 @@ from superset.utils.core import (
     merge_extra_filters,
 )
 from superset.utils.memoized import memoized
+from superset import security_manager
 
 if TYPE_CHECKING:
     from superset.connectors.sqla.models import SqlaTable
@@ -93,6 +95,7 @@ class ExtraCache:
         r"\{\{.*("
         r"current_user_id\(.*\)|"
         r"current_username\(.*\)|"
+        r"current_travel_id\(.*\)|"
         r"cache_key_wrapper\(.*\)|"
         r"url_param\(.*\)"
         r").*\}\}"
@@ -137,6 +140,21 @@ class ExtraCache:
             if add_to_cache_keys:
                 self.cache_key_wrapper(g.user.username)
             return g.user.username
+        return None
+
+    def current_travel_id(self, add_to_cache_keys: bool = True) -> Optional[str]:
+        """
+        Return the travel_id of the user who is currently logged in.
+
+        :param add_to_cache_keys: Whether the value should be included in the cache key
+        :returns: The travel_id
+        """
+        if g.user and hasattr(g.user, "username"):
+            try:
+                return security_manager.get_travel_id_by_username(g.user.username)
+            except Exception as e:
+                logging.error("Error %s", e)
+                return None
         return None
 
     def cache_key_wrapper(self, key: Any) -> Any:
@@ -493,6 +511,7 @@ class JinjaTemplateProcessor(BaseTemplateProcessor):
                 "url_param": partial(safe_proxy, extra_cache.url_param),
                 "current_user_id": partial(safe_proxy, extra_cache.current_user_id),
                 "current_username": partial(safe_proxy, extra_cache.current_username),
+                "current_travel_id": partial(safe_proxy, extra_cache.current_travel_id),
                 "cache_key_wrapper": partial(safe_proxy, extra_cache.cache_key_wrapper),
                 "filter_values": partial(safe_proxy, extra_cache.filter_values),
                 "get_filters": partial(safe_proxy, extra_cache.get_filters),

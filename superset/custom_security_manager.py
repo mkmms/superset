@@ -1,5 +1,6 @@
 from superset.security import SupersetSecurityManager
 from flask_appbuilder.security.sqla.models import User
+from sqlalchemy.orm import Session
 from werkzeug.security import generate_password_hash
 from sqlalchemy import (
     Column, 
@@ -7,6 +8,9 @@ from sqlalchemy import (
     String
 )
 import logging
+from typing import (
+    Optional
+)
 log = logging.getLogger(__name__)
 def get_user_role(role, user_type):
     logging.debug("===========================")
@@ -153,3 +157,15 @@ class CustomSecurityManager(SupersetSecurityManager):
             logging.error("Error %s", e)
             self.get_session.rollback()
             return False
+    
+    def get_travel_id_by_username(
+        self, username: str, session: Session = None
+    ) -> Optional[User]:
+        """
+        Retrieves a user by it's username case sensitive. Optional session parameter
+        utility method normally useful for celery tasks where the session
+        need to be scoped
+        """
+        session = session or self.get_session
+        user = session.query(CustomUser).filter(CustomUser.username == username).one_or_none()
+        return user.travel_id
