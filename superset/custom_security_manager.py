@@ -12,12 +12,6 @@ from typing import (
     Optional
 )
 log = logging.getLogger(__name__)
-def get_user_role(role, user_type):
-    logging.debug("===========================")
-    logging.debug("====== Role:  %s", role)
-    logging.debug("====== UserType:  %s", user_type)
-    logging.debug("===========================")
-    return "Admin"
 
 
 class CustomUser(User):
@@ -33,8 +27,8 @@ class CustomSecurityManager(SupersetSecurityManager):
 
     def oauth_user_info(self, provider, response=None):
         #for ticketsimply
-        # if re.match("\.ticketsimply", provider):
-        if provider == "ticketsimply":
+        providers = self.appbuilder.sm.oauth_remotes
+        if([p for p in providers].index(provider) >= 0):
             me = self.appbuilder.sm.oauth_remotes[provider].get("api/auth/me.json")
             data = me.json()
             return {
@@ -44,7 +38,6 @@ class CustomSecurityManager(SupersetSecurityManager):
                 "first_name": data.get("first_name", ""),
                 "last_name": data.get("last_name", ""),
                 "email": data.get("email", ""),
-                "role_keys": get_user_role(data.get("role"), data.get("user_type")),
                 "user_type": data.get("user_type"),
                 "user_role": data.get("role")
             }

@@ -307,24 +307,8 @@ AUTH_USER_REGISTRATION_ROLE_JMESPATH = "(ends_with(username, '.admin') && 'Admin
 
 #OAUTH_PROVIDERS
 OAUTH_PROVIDERS = [
-    # {
-    #     "name": "tsreports",
-    #     "icon": "",
-    #     "token_key": "access_token",
-    #     "remote_app": {
-    #         "client_id": "FgHR6U2omDm_P7dv-SOuL4ejZdhOaashWh1CYc5nhQY",
-    #         "client_secret": "sCZkY1oeqr2D7CYsVHE7IOiX-oF1J70L9aRuOkEM0yk",
-    #         "api_base_url": "http://69d3-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth",
-    #         "client_kwargs": {
-    #             "scope": "read"               # Scope for the Authorization
-    #         },
-    #         "request_token_url": None,
-    #         "access_token_url": "http://69d3-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/token",
-    #         "authorize_url": "http://69d3-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/authorize",
-    #     },
-    # },
     {
-        "name": "ticketsimply",
+        "name": "orange-ticketsimply",
         "icon": "",
         "token_key": "access_token",
         "remote_app": {
@@ -339,22 +323,22 @@ OAUTH_PROVIDERS = [
             "authorize_url": "http://orange.ticketsimply1.com:3001/oauth/authorize",
         },
     },
-    # {
-    #     "name": "gotour.ticketsimply",
-    #     "icon": "",
-    #     "token_key": "access_token",
-    #     "remote_app": {
-    #         "client_id": "tQias-bFapaK7M6veg_QYPghfk7dxxMgSc300bPPFwI",
-    #         "client_secret": "9QwwPp8tE8P32QyWIrYnSL27WnN4irauDmKeHZ1jGvM",
-    #         "api_base_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth",
-    #         "client_kwargs": {
-    #             "scope": "read"               # Scope for the Authorization
-    #         },
-    #         "request_token_url": None,
-    #         "access_token_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/token",
-    #         "authorize_url": "http://5525-2409-4072-6180-c0bb-59eb-a138-1694-1d0b.ngrok.io/oauth/authorize",
-    #     },
-    # }
+    {
+        "name": "gotour-ticketsimply",
+        "icon": "",
+        "token_key": "access_token",
+        "remote_app": {
+            "client_id": "tQias-bFapaK7M6veg_QYPghfk7dxxMgSc300bPPFwI",
+            "client_secret": "9QwwPp8tE8P32QyWIrYnSL27WnN4irauDmKeHZ1jGvM",
+            "api_base_url": "http://gotour.ticketsimply8.com:3001/oauth",
+            "client_kwargs": {
+                "scope": "read"               # Scope for the Authorization
+            },
+            "request_token_url": None,
+            "access_token_url": "http://gotour.ticketsimply8.com:3001/oauth/token",
+            "authorize_url": "http://gotour.ticketsimply8.com:3001/oauth/authorize",
+        },
+    }
 ]
 
 # Uncomment to setup OpenID providers example for OpenID authentication
