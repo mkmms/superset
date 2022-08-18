@@ -63,7 +63,7 @@ const MenuItem = styled(AntdMenu.Item)`
 `;
 
 const StyledNav = styled(AntdMenu)`
-  line-height: 51px;
+  line-height: 60px;
   border: none;
 
   & > .ant-menu-item,
@@ -133,7 +133,7 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
     span[role='img'] {
       position: absolute;
       right: ${({ theme }) => -theme.gridUnit + -2}px;
-      top: ${({ theme }) => theme.gridUnit * 5.25}px;
+      top: 25px;
       svg {
         font-size: ${({ theme }) => theme.gridUnit * 6}px;
         color: ${({ theme }) => theme.colors.grayscale.base};

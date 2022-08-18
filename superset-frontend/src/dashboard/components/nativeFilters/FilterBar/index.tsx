@@ -1,3 +1,4 @@
+/* eslint-disable theme-colors/no-literal-colors */
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -97,9 +98,9 @@ const Bar = styled.div<{ width: number }>`
   flex-direction: column;
   flex-grow: 1;
   width: ${({ width }) => width}px;
-  background: ${({ theme }) => theme.colors.grayscale.light5};
-  border-right: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
+  background: #ffffff;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
   min-height: 100%;
   display: none;
   &.open {

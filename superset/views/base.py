@@ -308,8 +308,8 @@ def menu_data() -> Dict[str, Any]:
     build_number = appbuilder.app.config["BUILD_NUMBER"]
     icon = appbuilder.app_icon
     op_config = appbuilder.sm.get_travel_info(session)
-    if(op_config["travel_logo"] != ""):
-        icon = op_config["travel_logo"]
+    if(op_config.get("travel_logo") != ""):
+        icon = op_config.get("travel_logo")
     return {
         "menu": menu,
         "brand": {
@@ -368,6 +368,11 @@ def common_bootstrap_payload() -> Dict[str, Any]:
     available_specs = get_available_engine_specs()
     frontend_config["HAS_GSHEETS_INSTALLED"] = bool(available_specs[GSheetsEngineSpec])
 
+    theme = conf["THEME_OVERRIDES"]
+    theme_data = appbuilder.sm.get_travel_theme(session)
+    if(len(theme_data.keys()) > 0):
+        theme = theme_data
+
     bootstrap_data = {
         "flash_messages": messages,
         "conf": frontend_config,
@@ -376,7 +381,7 @@ def common_bootstrap_payload() -> Dict[str, Any]:
         "feature_flags": get_feature_flags(),
         "extra_sequential_color_schemes": conf["EXTRA_SEQUENTIAL_COLOR_SCHEMES"],
         "extra_categorical_color_schemes": conf["EXTRA_CATEGORICAL_COLOR_SCHEMES"],
-        "theme_overrides": conf["THEME_OVERRIDES"],
+        "theme_overrides": theme,
         "menu_data": menu_data(),
     }
     bootstrap_data.update(conf["COMMON_BOOTSTRAP_OVERRIDES_FUNC"](bootstrap_data))

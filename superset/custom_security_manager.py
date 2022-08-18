@@ -170,11 +170,26 @@ class CustomSecurityManager(SupersetSecurityManager):
     def get_travel_info(self, session: Session = None):
         provider = session.get('oauth_provider', "")
         providers = self.appbuilder.sm.oauth_remotes
-        if([p for p in providers].index(provider) >= 0):
-            self.appbuilder.sm.oauth_remotes[provider].token = session.get('token_info')
-            travel_info = self.appbuilder.sm.oauth_remotes[provider].get("/api/auth/travel_config.json")
-            data = travel_info.json()
-            return {
-                "travel_logo": data.get("travel_logo")
-            }
+        try:
+            if([p for p in providers].index(provider) >= 0):
+                self.appbuilder.sm.oauth_remotes[provider].token = session.get('token_info')
+                travel_info = self.appbuilder.sm.oauth_remotes[provider].get("/api/auth/travel_config.json")
+                data = travel_info.json()
+                return {
+                    "travel_logo": data.get("travel_logo")
+                }
+        except Exception as e:
+            logging.error(e)
+        return {}
+
+    def get_travel_theme(self, session: Session = None):
+        provider = session.get('oauth_provider', "")
+        providers = self.appbuilder.sm.oauth_remotes
+        try:
+            if([p for p in providers].index(provider) >= 0):
+                self.appbuilder.sm.oauth_remotes[provider].token = session.get('token_info')
+                travel_info = self.appbuilder.sm.oauth_remotes[provider].get("/api/auth/travel_theme.json")
+                return travel_info.json()
+        except Exception as e:
+            logging.error(e)   
         return {}

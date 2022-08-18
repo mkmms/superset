@@ -1,3 +1,4 @@
+/* eslint-disable theme-colors/no-literal-colors */
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -97,16 +98,19 @@ const StyledHeader = styled.header`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        /* must be exactly the height of the Antd navbar */
-        min-height: 50px;
+        background: #FFFFFF;
         padding: ${theme.gridUnit}px ${theme.gridUnit * 2}px ${
     theme.gridUnit
   }px ${theme.gridUnit * 4}px;
-        max-width: ${theme.gridUnit * 37}px;
+        min-height: 60px;
+        max-width: 320px;
         img {
           height: 100%;
           object-fit: contain;
         }
+      }
+      .ant-menu-horizontal > .ant-menu-item a{
+        color: ${theme.colors.grayscale.dark1};
       }
       .navbar-brand-text {
         border-left: 1px solid ${theme.colors.grayscale.light2};
@@ -143,6 +147,9 @@ const StyledHeader = styled.header`
       .ant-menu-horizontal .ant-menu-item {
         height: 100%;
         line-height: inherit;
+      }
+      .ant-menu{
+        background-color: transparent;
       }
       .ant-menu > .ant-menu-item > a {
         padding: ${theme.gridUnit * 4}px;
