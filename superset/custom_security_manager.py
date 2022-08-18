@@ -1,5 +1,6 @@
 from superset.security import SupersetSecurityManager
 from flask_appbuilder.security.sqla.models import User
+from flask import session
 from sqlalchemy.orm import Session
 from werkzeug.security import generate_password_hash
 from sqlalchemy import (
@@ -9,8 +10,10 @@ from sqlalchemy import (
 )
 import logging
 from typing import (
+    Dict,
     Optional
 )
+
 log = logging.getLogger(__name__)
 
 
@@ -31,6 +34,7 @@ class CustomSecurityManager(SupersetSecurityManager):
         if([p for p in providers].index(provider) >= 0):
             me = self.appbuilder.sm.oauth_remotes[provider].get("api/auth/me.json")
             data = me.json()
+            session['token_info'] = self.appbuilder.sm.oauth_remotes[provider].token
             return {
                 "travel_id": data.get("travel_id", ""),
                 "travel_name": data.get("travel_name", ""),
@@ -162,3 +166,15 @@ class CustomSecurityManager(SupersetSecurityManager):
         session = session or self.get_session
         user = session.query(CustomUser).filter(CustomUser.username == username).one_or_none()
         return user.travel_id
+
+    def get_travel_info(self, session: Session = None):
+        provider = session.get('oauth_provider', "")
+        providers = self.appbuilder.sm.oauth_remotes
+        if([p for p in providers].index(provider) >= 0):
+            self.appbuilder.sm.oauth_remotes[provider].token = session.get('token_info')
+            travel_info = self.appbuilder.sm.oauth_remotes[provider].get("/api/auth/travel_config.json")
+            data = travel_info.json()
+            return {
+                "travel_logo": data.get("travel_logo")
+            }
+        return {}

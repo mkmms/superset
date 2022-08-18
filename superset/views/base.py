@@ -306,11 +306,15 @@ def menu_data() -> Dict[str, Any]:
     if callable(brand_text):
         brand_text = brand_text()
     build_number = appbuilder.app.config["BUILD_NUMBER"]
+    icon = appbuilder.app_icon
+    op_config = appbuilder.sm.get_travel_info(session)
+    if(op_config["travel_logo"] != ""):
+        icon = op_config["travel_logo"]
     return {
         "menu": menu,
         "brand": {
             "path": appbuilder.app.config["LOGO_TARGET_PATH"] or "/",
-            "icon": appbuilder.app_icon,
+            "icon": icon,
             "alt": appbuilder.app_name,
             "tooltip": appbuilder.app.config["LOGO_TOOLTIP"],
             "text": brand_text,
