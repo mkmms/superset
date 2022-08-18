@@ -94,18 +94,20 @@ export default function Button(props: ButtonProps) {
     backgroundColor = primary.base;
     backgroundColorHover = primary.dark1;
     backgroundColorActive = mix(0.2, grayscale.dark2, primary.dark1);
-    color = grayscale.light5;
-    colorHover = color;
+    color = primary.light5;
+    colorHover = primary.base;
   } else if (buttonStyle === 'tertiary' || buttonStyle === 'dashed') {
-    backgroundColor = grayscale.light5;
-    backgroundColorHover = grayscale.light5;
-    backgroundColorActive = grayscale.light5;
-    backgroundColorDisabled = grayscale.light5;
+    backgroundColor = primary.dark1;
+    backgroundColorHover = primary.base;
+    backgroundColorActive = primary.base;
+    backgroundColorDisabled = primary.dark1;
     borderWidth = 1;
     borderStyle = buttonStyle === 'dashed' ? 'dashed' : 'solid';
-    borderColor = primary.dark1;
+    borderColor = primary.base;
     borderColorHover = primary.light1;
     borderColorDisabled = grayscale.light2;
+    color = primary.base;
+    colorHover = primary.dark1;
   } else if (buttonStyle === 'danger') {
     backgroundColor = error.base;
     backgroundColorHover = mix(0.1, grayscale.light5, error.base);
@@ -128,6 +130,7 @@ export default function Button(props: ButtonProps) {
     backgroundColor = 'transparent';
     backgroundColorHover = 'transparent';
     backgroundColorActive = 'transparent';
+    color = grayscale.base;
     colorHover = primary.base;
   }
 

@@ -1,3 +1,4 @@
+/* eslint-disable theme-colors/no-literal-colors */
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -40,7 +41,7 @@ export const menuTriggerStyles = (theme: SupersetTheme) => css`
   }
 
   &:hover:not(:focus) > span.anticon {
-    color: ${theme.colors.primary.light1};
+    color: ${theme.colors.primary.dark1};
   }
 `;
 
@@ -50,7 +51,7 @@ const headerStyles = (theme: SupersetTheme) => css`
   align-items: center;
   flex-wrap: nowrap;
   justify-content: space-between;
-  background-color: ${theme.colors.grayscale.light5};
+  background-color: ${theme.colors.primary.dark1};
   height: ${theme.gridUnit * 16}px;
   padding: 0 ${theme.gridUnit * 4}px;
 

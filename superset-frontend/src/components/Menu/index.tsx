@@ -70,7 +70,7 @@ const StyledNav = styled(AntdMenu)`
   & > .ant-menu-submenu {
     vertical-align: inherit;
     &:hover {
-      color: ${({ theme }) => theme.colors.grayscale.dark1};
+      color: ${({ theme }) => theme.colors.primary.dark1};
     }
   }
 
@@ -92,14 +92,14 @@ const StyledNav = styled(AntdMenu)`
 `;
 
 const StyledSubMenu = styled(AntdMenu.SubMenu)`
-  color: ${({ theme }) => theme.colors.grayscale.dark1};
+  color: ${({ theme }) => theme.colors.primary.dark1};
   border-bottom: none;
   .ant-menu-submenu-open,
   .ant-menu-submenu-active {
-    background-color: ${({ theme }) => theme.colors.primary.light5};
+    background-color: ${({ theme }) => theme.colors.primary.base};
     .ant-menu-submenu-title {
-      color: ${({ theme }) => theme.colors.grayscale.dark1};
-      background-color: ${({ theme }) => theme.colors.primary.light5};
+      color: ${({ theme }) => theme.colors.primary.dark1};
+      background-color: ${({ theme }) => theme.colors.primary.base};
       border-bottom: none;
       margin: 0;
       &:after {
@@ -136,7 +136,7 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
       top: 25px;
       svg {
         font-size: ${({ theme }) => theme.gridUnit * 6}px;
-        color: ${({ theme }) => theme.colors.grayscale.base};
+        color: ${({ theme }) => theme.colors.primary.dark1};
       }
     }
     & > span {
@@ -144,7 +144,7 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
       top: 7px;
     }
     &:hover {
-      color: ${({ theme }) => theme.colors.primary.base};
+      color: ${({ theme }) => theme.colors.primary.dark1};
     }
   }
 `;

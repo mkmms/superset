@@ -86,7 +86,7 @@ export interface MenuObjectProps extends MenuObjectChildProps {
 
 const StyledHeader = styled.header`
   ${({ theme }) => `
-      background-color: ${theme.colors.grayscale.light5};
+      background-color: ${theme.colors.primary.base};
       margin-bottom: 2px;
       &:nth-last-of-type(2) nav {
         margin-bottom: 2px;
@@ -110,13 +110,13 @@ const StyledHeader = styled.header`
         }
       }
       .ant-menu-horizontal > .ant-menu-item a{
-        color: ${theme.colors.grayscale.dark1};
+        color: ${theme.colors.primary.dark1};
       }
       .navbar-brand-text {
-        border-left: 1px solid ${theme.colors.grayscale.light2};
-        border-right: 1px solid ${theme.colors.grayscale.light2};
+        border-left: 1px solid ${theme.colors.primary.base};
+        border-right: 1px solid ${theme.colors.primary.base};
         height: 100%;
-        color: ${theme.colors.grayscale.dark1};
+        color: ${theme.colors.primary.dark1};
         padding-left: ${theme.gridUnit * 4}px;
         padding-right: ${theme.gridUnit * 4}px;
         margin-right: ${theme.gridUnit * 6}px;
@@ -174,8 +174,8 @@ const StyledHeader = styled.header`
       }
       .ant-menu-item a {
         &:hover {
-          color: ${theme.colors.grayscale.dark1};
-          background-color: ${theme.colors.primary.light5};
+          color: ${theme.colors.primary.dark1};
+          background-color: ${theme.colors.primary.base};
           border-bottom: none;
           margin: 0;
           &:after {
