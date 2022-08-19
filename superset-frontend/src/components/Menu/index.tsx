@@ -147,6 +147,11 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
       color: ${({ theme }) => theme.colors.primary.dark1};
     }
   }
+  &.ant-menu-submenu-vertical {
+    .ant-menu-submenu-title {
+      color: ${({ theme }) => theme.colors.primary.base};
+    }
+  }
 `;
 
 export declare type MenuMode =

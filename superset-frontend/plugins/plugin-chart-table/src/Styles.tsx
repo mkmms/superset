@@ -1,3 +1,4 @@
+/* eslint-disable theme-colors/no-literal-colors */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -36,7 +37,7 @@ export default styled.div`
     thead > tr > th {
       padding-right: 0;
       position: relative;
-      background: ${theme.colors.grayscale.light5};
+      background: #ecf0f1;
       text-align: left;
     }
     th svg {
