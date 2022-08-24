@@ -16,8 +16,8 @@ class OAuthConfigModelView(
     datamodel = SQLAInterface(OAuthConfig)
     include_route_methods = RouteMethod.CRUD_SET | {"oauth_config"}
     
-    # class_permission_name: str = "OAuthConfig"
-    # method_permission_name = MODEL_VIEW_RW_METHOD_PERMISSION_MAP
+    class_permission_name: str = "OAuthConfig"
+    method_permission_name = MODEL_VIEW_RW_METHOD_PERMISSION_MAP
     
     list_title = _("OAuth Configs")
     show_title = _("Show OAuth Config")
