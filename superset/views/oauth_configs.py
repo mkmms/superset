@@ -26,6 +26,12 @@ class OAuthConfigModelView(
     
     list_columns = [
         "name",
+        "api_base_url",
+        "client_id",
+    ]
+    
+    edit_columns = [
+        "name",
         "token_key",
         "client_id",
         "client_secret",
@@ -34,9 +40,7 @@ class OAuthConfigModelView(
         "authorize_url"
     ]
     
-    edit_columns = list_columns
-    
-    add_columns = list_columns
+    add_columns = edit_columns
     
     label_columns = {
         "name": _("OAuth Config Name"),

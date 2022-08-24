@@ -308,7 +308,7 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
         appbuilder.add_view_no_menu(TabStateView)
         appbuilder.add_view_no_menu(TagView)
         appbuilder.add_view_no_menu(ReportView)
-        appbuilder.add_view(OAuthConfigModelView, "OAtuh Config")
+        appbuilder.add_view(OAuthConfigModelView, "OAuth Config")
 
         #
         # Add links
