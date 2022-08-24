@@ -193,3 +193,28 @@ class CustomSecurityManager(SupersetSecurityManager):
         except Exception as e:
             logging.error(e)   
         return {}
+    
+
+    @property
+    def oauth_providers(self):
+        oauth_providers = self.get_session.execute("select name, token_key, client_id, client_secret, api_base_url, access_token_url, authorize_url from oauth_configs").all()
+        providers = self.appbuilder.get_app.config["OAUTH_PROVIDERS"].copy()
+        for p in oauth_providers:
+            provider = {
+                "name": p[0],
+                "icon": "",
+                "token_key": p[1],
+                "remote_app": {
+                    "client_id": p[2],
+                    "client_secret": p[3],
+                    "api_base_url": p[4],
+                    "client_kwargs": {
+                        "scope": "read"               # Scope for the Authorization
+                    },
+                    "request_token_url": None,
+                    "access_token_url": p[5],
+                    "authorize_url": p[6],
+                }
+            }
+            providers.append(provider)
+        return providers

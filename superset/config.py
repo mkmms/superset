@@ -322,22 +322,6 @@ OAUTH_PROVIDERS = [
             "access_token_url": "http://orange.ticketsimply1.com:3001/oauth/token",
             "authorize_url": "http://orange.ticketsimply1.com:3001/oauth/authorize",
         },
-    },
-    {
-        "name": "gotour-ticketsimply",
-        "icon": "",
-        "token_key": "access_token",
-        "remote_app": {
-            "client_id": "tQias-bFapaK7M6veg_QYPghfk7dxxMgSc300bPPFwI",
-            "client_secret": "9QwwPp8tE8P32QyWIrYnSL27WnN4irauDmKeHZ1jGvM",
-            "api_base_url": "http://gotour.ticketsimply8.com:3001/",
-            "client_kwargs": {
-                "scope": "read"               # Scope for the Authorization
-            },
-            "request_token_url": None,
-            "access_token_url": "http://gotour.ticketsimply8.com:3001/oauth/token",
-            "authorize_url": "http://gotour.ticketsimply8.com:3001/oauth/authorize",
-        },
     }
 ]
 
