@@ -78,11 +78,11 @@ export default function Button(props: ButtonProps) {
     padding = 10;
   }
 
-  let backgroundColor = primary.light4;
+  let backgroundColor = `${primary.light4} !important`;
   let backgroundColorHover = mix(0.1, primary.base, primary.light4);
   let backgroundColorActive = mix(0.25, primary.base, primary.light4);
   let backgroundColorDisabled = grayscale.light2;
-  let color = primary.base;
+  let color = `${primary.base} !important`;
   let colorHover = color;
   let borderWidth = 0;
   let borderStyle = 'none';

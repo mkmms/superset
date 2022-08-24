@@ -300,7 +300,7 @@ AUTH_USER_REGISTRATION = True
 
 # The default user self registration role
 # AUTH_USER_REGISTRATION_ROLE = "Admin"
-AUTH_USER_REGISTRATION_ROLE_JMESPATH = "(ends_with(username, '.admin') && 'Admin') || (ends_with(username, '.owner') && 'Admin') || 'Public'"
+AUTH_USER_REGISTRATION_ROLE_JMESPATH = "(ends_with(username, '.admin') && 'Admin') || (ends_with(username, '.owner') && 'Admin') || 'Alpha'"
 
 # When using LDAP Auth, setup the LDAP server
 # AUTH_LDAP_SERVER = "ldap://ldapserver.new"
@@ -480,7 +480,7 @@ DEFAULT_FEATURE_FLAGS: Dict[str, bool] = {
     "CACHE_IMPERSONATION": False,
     # Enable sharing charts with embedding
     "EMBEDDABLE_CHARTS": True,
-    "DRILL_TO_DETAIL": False,
+    "DRILL_TO_DETAIL": True,
 }
 
 # Feature flags may also be set via 'SUPERSET_FEATURE_' prefixed environment vars.
