@@ -1,6 +1,6 @@
 from superset.security import SupersetSecurityManager
 from flask_appbuilder.security.sqla.models import User
-from flask import session
+from flask import session, redirect
 from sqlalchemy.orm import Session
 from werkzeug.security import generate_password_hash
 from sqlalchemy import (
@@ -13,7 +13,7 @@ from typing import (
     Dict,
     Optional
 )
-
+from flask_login import logout_user
 log = logging.getLogger(__name__)
 
 
@@ -179,8 +179,11 @@ class CustomSecurityManager(SupersetSecurityManager):
                     "travel_logo": data.get("travel_logo")
                 }
         except Exception as e:
+            if(e.error == 'token_invalid'):
+                logout_user()
+            
             logging.error(e)
-        return {}
+            return {}
 
     def get_travel_theme(self, session: Session = None):
         provider = session.get('oauth_provider', "")
@@ -191,6 +194,9 @@ class CustomSecurityManager(SupersetSecurityManager):
                 travel_info = self.appbuilder.sm.oauth_remotes[provider].get("/api/auth/travel_theme.json")
                 return travel_info.json()
         except Exception as e:
+            if(e.error == 'token_invalid'):
+                logout_user()
+                
             logging.error(e)   
         return {}
     
